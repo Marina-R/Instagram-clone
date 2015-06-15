@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Instagram clone</title>
+	<link rel="stylesheet" type="text/css" href="styles/style.css">
+</head>
+<body>
+	<section id='welcome-page'>
+		<div id='home-banner'>
+			<div id="login-bar">
+				<div id="welcome-logo"></div>
+				<a href="#login" id="welcome-login">Log In</a>
+				<a href="#signup" id="welcome-login">Sign Up</a>
+			</div>
+		</div>
+		<div id='home-main'>
+			<div id="content">
+				<div id="content-text">
+					<h4>Capture and Share the World's Moments</h4>
+					<p>Instagram is a free and simple way to share your life and keep up with other people.</p>
+					<p>Take a picture or video, then customize it with filters and creative tools. Post it on Instagram and share instantly on Facebook, Twitter, Tumblr and more/or send it directly as a private message. Find people to follow based on things you are into, and be part of an inspirational community.</p>
+				</div>
+				<div id="get-instagram-links">
+					<div id="getAt-Apple"></div>
+					<div id="getAt-Google"></div>
+				</div>
+			</div>
+		</div>
+		<div id="phone-img"></div>
+	</section>
+	<section id='login-page'>
+		<div id="login">
+			<div class="login-logo"></div>
+			<form id="login-form">
+				<label class="login-label">Username<br>
+					<input type="text" id='login-username' placeholder='Enter your username'>
+				</label>
+				<label class="login-label">Password<br>
+					<input type="password" id="login-password" placeholder='Enter your password'>
+				</label>
+				<div class="error" id="login-error"></div>
+				<button type='submit' id="login-button">Log In</button>
+			</form>
+			<button id="login-register-button" class="register-button">Sign Up</button>
+		</div>
+	</section>
+	<section id='signup-page'>
+		<div id="registration">
+			<div class="login-logo"></div>
+			<form id="register-form">
+				<label class="login-label">Full name<br>
+					<input type="text" id='register-fullname' placeholder='Enter your full name'>
+				</label>
+				<label class="login-label">Email<br>
+					<input type="text" id='register-email' placeholder='Enter your email'>
+				</label>
+				<label class="login-label">Username<br>
+					<input type="text" id='register-username' placeholder='Enter your username'>
+				</label>
+				<label class="login-label">Password<br>
+					<input type="password" id="register-password" placeholder='Enter your password'>
+				</label>
+				<div class="error" id="register-error"></div>
+				<button class="register-button" id="signup-button">Sign Up</button>
+			</form>
+		</div>
+	</section>
+	<section id='main-page'>
+		<div class="header">
+			<div class="main-logo"></div>
+			<a href='#' class="main-logout">Log Out</a>
+			<a href="#accounts" id="main-username">user</a>
+		</div>
+		<div id="main-page-content">
+			<!-- all photos go here -->
+		</div>
+	</section>
+	<section id='profile-page'>
+		<div class="header">
+			<div class="main-logo"></div>
+			<a href='#' class="main-logout">Log Out</a>
+		</div>
+		<div id="user-info">
+			<div id="personal-username">Blah blah</div>
+			<button id="add">Add Photo</button>
+		</div>
+		<div id='add-post'>
+			<div id="input1">
+				<input type="text" placeholder='Image URL' id="img-url">
+			</div>
+			<div id="url-error">Please use valid url format (http:// or https://)</div>
+			<div id="input2">
+				<textarea placeholder='Image Caption' id="img-text"></textarea>
+			</div>
+			<div id="caption-error">Please add caption</div>
+			<div id="buttons">
+				<div id="btn1">
+					<button id="add-image"><div id="img"></div><div id="add-it">ADD IMAGE</div></button>
+				</div>
+				<div id="btn2">
+					<button id='cancel'>CANCEL</button>
+				</div>
+			</div>
+		</div>
+		<div id="user-feed">
+			<!--personal photos goes here -->
+		</div>	
+	</section>
+
+	<script type="text/template" id='to-post'>
+		<div class='new-post'>
+			<div class='img-div' data-cid='<%= model.cid %>'>
+				<div class='photo-header'>
+					<div class='photo-info'>
+						<a href='#accounts' class='photo-owner'><%= model.get('userId') %></a>
+						<div class='photo-created-at'><%= model.get('createdAt') %></div>
+					</div>
+					<div class='caption'><%= model.get('caption') %></div>
+				</div>
+				<img src='<%= model.get("url") %>' style="width: inherit">
+				<div class='likes'><%= model.get('likes') %> likes</div>
+				<form class='comment' data-form-cid='<%= model.cid %>'>
+					<img class='comment-icon' src='images/icon.png' data-btn-cid='<%= model.cid %>'>
+					<input class='comment-input' type='text' placeholder='Add your comment...'>
+					<div class='comment-error'>Please enter your comment</div>
+				</form>	
+				<div class='user-comments'></div>	
+			</div>
+		</div>	
+	</script>
+	<script type="text/template" id='comments'>
+		<div class='comment-box' data-cid='<%= model.cid %>'>
+			// <div class='like-counter'><%= model.get('likes') %></div>
+			<div class='text'><%= model.get('text') %></div>
+			<div class='like-btn' data-btn-cid='<%= model.cid %>'></div>
+		</div>
+	</script>
+	<script type="text/javascript" src="scripts/all.js"></script>
+</body>
+</html>
